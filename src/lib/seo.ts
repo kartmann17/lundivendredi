@@ -33,17 +33,20 @@ export const SITE = {
 } as const;
 
 export const PAGE_DEFAULTS = {
-  // 54 chars — sous la limite de troncature Google mobile (~60 chars)
-  title: 'Site web pro 5 jours · 550€ — Rochefort | lundivendredi',
-  // 156 chars — dans la fenêtre Google, avec "Rochefort" + "Charente-Maritime" + urgence
+  // 58 chars — sous la limite de troncature Google mobile (~60 chars)
+  title: 'Landing page SEO · 5 jours · 550€ — Rochefort | lundivendredi',
+  // 159 chars — dans la fenêtre Google, avec "SEO" + "Rochefort" + "Charente-Maritime"
   description:
-    'Site web pro livré vendredi prochain pour 550€ TTC. Code source à toi, 1 mois de retouches incluses. Freelance Rochefort (Charente-Maritime), France entière.',
+    'Landing page pro optimisée SEO, livrée vendredi prochain pour 550€ TTC. Code source à toi, 1 mois de retouches inclus. Freelance Rochefort, France entière.',
   keywords: [
+    'landing page 5 jours',
+    'landing page pas cher',
     'site web 5 jours',
     'création site internet rapide',
     'site internet pas cher Rochefort',
     'site web 550 euros',
     'site web pas cher',
+    'landing page SEO',
     'développeur web freelance livraison rapide',
     'site web Charente-Maritime',
     'freelance Rochefort',

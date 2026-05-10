@@ -16,7 +16,7 @@ export function localBusinessSchema() {
     name: SITE.legalName,
     alternateName: SITE.name,
     description:
-      "Création de sites web professionnels livrés en 5 jours ouvrés pour 550€ TTC, paiement unique. Code source remis, 1 mois de retouches inclus. Freelance basé à Rochefort, intervention France entière.",
+      "Création de landing pages professionnelles optimisées SEO, livrées en 5 jours ouvrés pour 550€ TTC, paiement unique. Code source remis, 1 mois de retouches inclus. Freelance basé à Rochefort, intervention France entière.",
     url: SITE.url,
     logo: `${SITE.url}/og-image.png`,
     image: `${SITE.url}/og-image.png`,
@@ -83,10 +83,10 @@ export function serviceSchema() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': SERVICE_ID,
-    name: 'Site web pro livré en 5 jours',
+    name: 'Landing page pro livrée en 5 jours',
     serviceType: 'Création de site internet',
     description:
-      "Création d'un site web professionnel sur-mesure livré en 5 jours ouvrés. Code source remis. 1 mois de retouches gratuites incluses.",
+      "Création d'une landing page professionnelle sur-mesure + page contact, optimisée SEO, livrée en 5 jours ouvrés. Code source remis. 1 mois de retouches gratuites incluses.",
     provider: { '@id': BUSINESS_ID },
     areaServed: { '@type': 'Country', name: 'France' },
     offers: {

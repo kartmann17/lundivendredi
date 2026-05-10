@@ -4,7 +4,7 @@ export const FAQ: FaqItem[] = [
   {
     question: 'Concrètement, on commence quand ?',
     answer:
-      "Tu réserves un créneau, je te recontacte sous 4 h ouvrées pour caler la visio de lancement. Versement de l'acompte (275 €), et le lundi suivant 9h matin on démarre. Si tu réserves vendredi, on attaque lundi prochain.",
+      "Tu réserves un créneau, je te recontacte sous 4 h ouvrées pour caler la visio de lancement. Versement de l'acompte (275 €), et le lundi suivant à 9h on démarre. Si tu réserves vendredi, on attaque lundi prochain.",
   },
   {
     question: "Et si je n'ai pas de textes ni de photos ?",
@@ -24,12 +24,17 @@ export const FAQ: FaqItem[] = [
   {
     question: 'Pourquoi pas WordPress / Wix / Webflow ?',
     answer:
-      "Sites codés en Astro (HTML/CSS moderne). Plus rapides, plus sécurisés, pas de plugin qui casse en mise à jour, pas d'abonnement mensuel. Et surtout : tu pars avec le code source. Aucun vendor lock-in. Tu peux changer de prestataire ou d'hébergeur sans rien perdre.",
+      "Trois raisons. (1) SEO max : site léger, HTML propre, données structurées, vitesse au top — exactement ce que Google récompense. WordPress avec ses plugins est lourd et lent par nature. (2) Pas d'abonnement : Wix et Webflow te facturent 20-40 €/mois à vie. Ici 0 €/mois après le paiement unique. (3) Code source à toi : aucun vendor lock-in. Tu changes de prestataire ou d'hébergeur sans rien perdre.",
   },
   {
-    question: 'Je veux 15 pages, c\'est possible ?',
+    question: 'Je veux plusieurs pages, c\'est possible ?',
     answer:
-      "550 € couvre une landing page complète + 5 pages secondaires (à propos, services, réalisations, contact, mentions). Au-delà : on prend une 2e semaine (550 € supplémentaires) ou on planifie un sprint de 10 jours sur 2 semaines. C'est volontairement carré pour tenir l'engagement vendredi 17h.",
+      "550 € couvre une landing page complète (longue, qui présente tout) et une page contact dédiée. Pas plus. Si tu as besoin de pages additionnelles (services détaillés, à propos, FAQ étendue, mentions séparées), on ajoute à 80 €/page. Pour un site complet de 6 à 10 pages, on planifie un sprint étendu sur 2 semaines (1100 € total).",
+  },
+  {
+    question: 'Et le référencement Google ?',
+    answer:
+      "Le site est livré 100 % optimisé pour Google : HTML sémantique, données structurées schema.org, sitemap XML, Search Console inscrit, balises title et description ciblées, vitesse Lighthouse 95+. La technique est blindée. Pour le ranking effectif, ça dépend aussi de ton contenu et de ta fiche Google Business Profile — je te montre comment optimiser tout ça pendant la formation.",
   },
   {
     question: 'Je suis à Strasbourg, ça marche aussi ?',
