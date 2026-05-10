@@ -1,0 +1,56 @@
+export const SITE = {
+  name: 'lundivendredi',
+  legalName: 'Kreyatik Studio',
+  tagline: 'sites web livrés en 5 jours · 550€',
+  url: 'https://lundivendredi.fr',
+  defaultLocale: 'fr-FR',
+  defaultLanguage: 'fr',
+  ogImage: '/og-image.png',
+  themeColor: '#0F0E0C',
+  twitter: '@kreyatik',
+  contact: {
+    email: 'kreyatik@gmail.com',
+    emailDisplay: 'bonjour@lundivendredi.fr',
+    phone: '+33695800663',
+    phoneDisplay: '06 95 80 06 63',
+  },
+  business: {
+    streetAddress: 'Rochefort',
+    addressLocality: 'Rochefort',
+    postalCode: '17300',
+    addressRegion: 'Charente-Maritime',
+    addressCountry: 'FR',
+    latitude: 45.9408,
+    longitude: -0.9596,
+    openingHours: 'Mo-Fr 09:00-18:00',
+    foundingDate: '2024',
+    priceRange: '€€',
+  },
+  social: {
+    linkedin: 'https://www.linkedin.com/in/lionel-blanchet-kreyatik',
+    github: 'https://github.com/kreyatik',
+  },
+} as const;
+
+export const PAGE_DEFAULTS = {
+  title: 'Site web pro livré en 5 jours · 550€ tout compris | lundivendredi',
+  description:
+    'Site web pro livré en 5 jours pour 550€ TTC, paiement unique. Hébergement et domaine 1 an offerts. Freelance basé à Rochefort, livraison France entière.',
+  keywords: [
+    'site web 5 jours',
+    'création site internet rapide',
+    'site internet pas cher Rochefort',
+    'site web 550 euros',
+    'site web pas cher',
+    'développeur web freelance livraison rapide',
+  ],
+} as const;
+
+export type SeoProps = {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+};

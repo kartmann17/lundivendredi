@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/astro/Nav.astro';
+import Hero from '../components/astro/Hero.astro';
+import PourQui from '../components/astro/PourQui.astro';
+import CeQuiEstInclus from '../components/astro/CeQuiEstInclus.astro';
+import ProcessusTimeline from '../components/astro/ProcessusTimeline.astro';
+import Pourquoi5Jours from '../components/astro/Pourquoi5Jours.astro';
+import Temoignages from '../components/astro/Temoignages.astro';
+import FAQ from '../components/astro/FAQ.astro';
+import Reservation from '../components/astro/Reservation.astro';
+import Footer from '../components/astro/Footer.astro';
+import JsonLd from '../components/astro/seo/JsonLd.astro';
+import SchemaFAQ from '../components/astro/seo/SchemaFAQ.astro';
+import { serviceSchema, breadcrumbSchema } from '../lib/schema';
+import { FAQ as FAQ_DATA } from '../data/faq';
+import { SITE } from '../lib/seo';
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <JsonLd data={serviceSchema()} />
+    <SchemaFAQ items={FAQ_DATA} />
+    <JsonLd data={breadcrumbSchema([{ name: 'Accueil', url: SITE.url }])} />
+  </Fragment>
+
+  <Nav />
+
+  <main id="contenu">
+    <Hero />
+    <PourQui />
+    <CeQuiEstInclus />
+    <ProcessusTimeline />
+    <Pourquoi5Jours />
+    <Temoignages />
+    <FAQ />
+    <Reservation />
+  </main>
+
+  <Footer />
+</BaseLayout>

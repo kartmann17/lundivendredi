@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import BaseHead from '../components/astro/seo/BaseHead.astro';
+import JsonLd from '../components/astro/seo/JsonLd.astro';
+import {
+  localBusinessSchema,
+  personSchema,
+  websiteSchema,
+} from '../lib/schema';
+import type { SeoProps } from '../lib/seo';
+
+type Props = SeoProps & {
+  showGlobalSchemas?: boolean;
+};
+
+const { showGlobalSchemas = true, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <BaseHead {...seo} />
+    {showGlobalSchemas && (
+      <>
+        <JsonLd data={localBusinessSchema()} />
+        <JsonLd data={personSchema()} />
+        <JsonLd data={websiteSchema()} />
+      </>
+    )}
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body class="grain antialiased">
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+    <slot />
+
+    <script>
+      // Reveal au scroll + compteur jours animé
+      const setup = () => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+          document.querySelectorAll('.day').forEach((d) => d.classList.add('lit'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+        const strip = document.getElementById('weekStrip');
+        if (strip) {
+          const days = strip.querySelectorAll('.day');
+          const stripIO = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  days.forEach((d, i) => {
+                    setTimeout(() => d.classList.add('lit'), 350 * i);
+                  });
+                  stripIO.unobserve(strip);
+                }
+              });
+            },
+            { threshold: 0.5 }
+          );
+          stripIO.observe(strip);
+        }
+      };
+
+      // Initial mount + re-run after View Transitions navigation
+      setup();
+      document.addEventListener('astro:page-load', setup);
+    </script>
+  </body>
+</html>

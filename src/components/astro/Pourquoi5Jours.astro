@@ -1,0 +1,53 @@
+---
+const raisons = [
+  {
+    label: 'une semaine, un client',
+    body: 'Pendant 5 jours, je ne travaille que sur ton site. Pas de jonglage entre 6 projets, pas de "désolé je te rappelle vendredi".',
+  },
+  {
+    label: 'un cadre, pas une cage',
+    body: "La contrainte force la décision. On enlève les 80 % de fonctionnalités qui ne servent à rien et on garde ce qui convertit.",
+  },
+  {
+    label: 'pas livré, remboursé',
+    body: "Si vendredi 17 h ton site n'est pas en ligne, accessible, fonctionnel — je te rends ton acompte. Pas de petite ligne, pas d'astérisque.",
+  },
+];
+---
+
+<section
+  class="relative border-t border-rule py-24 md:py-36 overflow-hidden"
+  aria-labelledby="pourquoi-title"
+>
+  <div class="max-w-[1320px] mx-auto px-6 md:px-24">
+    <div class="grid grid-cols-12 gap-6 items-start">
+      <div class="col-span-12 md:col-span-5 md:sticky md:top-12">
+        <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-4">№ 05</div>
+        <h2 id="pourquoi-title" class="display text-[10vw] md:text-7xl leading-[0.92]">
+          Pourquoi<br />
+          <span class="display-italic">5 jours</span>,<br />
+          pas 3 mois&nbsp;?
+        </h2>
+        <p class="hand text-3xl text-cream/80 mt-8 rotate-[-2deg]">
+          Parce qu'au-delà,<br />personne ne tient son focus.
+        </p>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 md:col-start-7 space-y-12">
+        {
+          raisons.map((r) => (
+            <div>
+              <div class="mono text-[12px] uppercase tracking-[0.18em] text-punch mb-2">→ {r.label}</div>
+              <p
+                class="display text-2xl md:text-3xl leading-[1.2]"
+                style="font-variation-settings: 'opsz' 60, 'wght' 360;"
+              >
+                {r.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

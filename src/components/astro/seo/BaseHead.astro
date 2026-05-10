@@ -1,0 +1,73 @@
+---
+import { SITE, PAGE_DEFAULTS, type SeoProps } from '../../../lib/seo';
+
+type Props = SeoProps;
+
+const {
+  title = PAGE_DEFAULTS.title,
+  description = PAGE_DEFAULTS.description,
+  canonical,
+  noindex = false,
+  ogImage = SITE.ogImage,
+  ogType = 'website',
+} = Astro.props;
+
+const canonicalURL = canonical
+  ? new URL(canonical, Astro.site ?? SITE.url).toString()
+  : new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString();
+
+const ogImageURL = new URL(ogImage, Astro.site ?? SITE.url).toString();
+const robots = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content={SITE.themeColor} />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+<link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={PAGE_DEFAULTS.keywords.join(', ')} />
+<meta name="author" content={SITE.legalName} />
+<meta name="publisher" content={SITE.legalName} />
+<meta name="robots" content={robots} />
+<meta name="googlebot" content={robots} />
+<meta name="language" content="French" />
+<meta name="geo.region" content="FR-17" />
+<meta name="geo.placename" content="Rochefort" />
+<meta name="geo.position" content={`${SITE.business.latitude};${SITE.business.longitude}`} />
+<meta name="ICBM" content={`${SITE.business.latitude}, ${SITE.business.longitude}`} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${SITE.name} — ${SITE.tagline}`} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={SITE.twitter} />
+<meta name="twitter:creator" content={SITE.twitter} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
+
+<link rel="preconnect" href="https://api.resend.com" crossorigin />
+<link rel="dns-prefetch" href="https://api.resend.com" />
+<link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
+<link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />

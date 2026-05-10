@@ -1,0 +1,4 @@
+# Cloudflare Pages — redirections 301
+# Redirige toutes les variantes vers la home canonique
+/index.html / 301
+/home / 301

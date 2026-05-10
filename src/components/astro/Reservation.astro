@@ -1,0 +1,69 @@
+---
+import ReservationForm from '../react/ReservationForm.tsx';
+import { CRENEAUX } from '../../data/creneaux';
+---
+
+<section
+  id="reserver"
+  class="relative border-t border-rule py-24 md:py-40 overflow-hidden"
+  aria-labelledby="reserver-title"
+>
+  <!-- Filigrane « vendredi. » -->
+  <div
+    aria-hidden="true"
+    class="absolute -bottom-[8vw] -right-[2vw] pointer-events-none ghost-num display-italic text-[20vw] md:text-[16vw] leading-none"
+  >
+    vendredi.
+  </div>
+
+  <div class="max-w-[1320px] mx-auto px-6 md:px-24 relative">
+    <div class="grid grid-cols-12 gap-6 mb-12 md:mb-20 items-end">
+      <div class="col-span-12 md:col-span-3 mono text-[11px] uppercase tracking-[0.22em] text-cream/55">
+        № 08 — réservation
+      </div>
+      <h2 id="reserver-title" class="col-span-12 md:col-span-9 display text-[10vw] md:text-[6.5rem] leading-[0.92]">
+        Réserve ta <span class="display-italic">semaine</span>.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-12 gap-10">
+      <!-- Sidebar gauche -->
+      <aside class="col-span-12 md:col-span-4 space-y-8">
+        <div>
+          <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-3">↳ créneaux ouverts</div>
+          <ul class="display text-2xl space-y-2">
+            {
+              CRENEAUX.map((c) => {
+                const complet = c.dispo === 0;
+                return (
+                  <li
+                    class={`flex items-baseline justify-between gap-4 border-b border-rule pb-2 ${complet ? 'text-cream/45' : ''}`}
+                  >
+                    <span>{c.label}</span>
+                    <span class={`mono text-xs ${complet ? '' : 'text-cream/50'}`}>
+                      {complet ? 'complet' : `${c.dispo} dispo`}
+                    </span>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+
+        <div>
+          <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-3">↳ ce qui se passe après</div>
+          <ol class="text-cream/75 leading-relaxed space-y-3">
+            <li><span class="text-punch mono">01.</span> J'envoie un mail dans les 4 h ouvrées.</li>
+            <li><span class="text-punch mono">02.</span> 30 min de visio offerte pour valider que c'est calé.</li>
+            <li><span class="text-punch mono">03.</span> Bon de commande, acompte 275 €, c'est parti.</li>
+          </ol>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="col-span-12 md:col-span-8">
+        <ReservationForm client:visible />
+      </div>
+    </div>
+  </div>
+</section>

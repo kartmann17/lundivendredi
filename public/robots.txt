@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /merci
+Disallow: /_actions/
+
+Sitemap: https://lundivendredi.fr/sitemap-index.xml

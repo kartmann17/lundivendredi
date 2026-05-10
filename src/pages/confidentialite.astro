@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/astro/Nav.astro';
+import Footer from '../components/astro/Footer.astro';
+import { SITE } from '../lib/seo';
+
+const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
+---
+
+<BaseLayout
+  title="Politique de confidentialité | lundivendredi"
+  description="Politique de confidentialité du site lundivendredi.fr — données collectées, finalités, droits RGPD."
+>
+  <Nav />
+
+  <main id="contenu" class="relative school-margin overflow-hidden py-24 md:py-36">
+    <div class="max-w-[1320px] mx-auto px-6 md:px-24">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">№ légal</span>
+        <span class="h-px w-16 bg-cream/20"></span>
+        <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">RGPD</span>
+      </div>
+
+      <h1 class="display text-[10vw] md:text-7xl leading-[0.95]">
+        <span class="display-italic">Confidentialité</span> &amp; vie privée.
+      </h1>
+      <p class="mono text-[11px] uppercase tracking-[0.22em] text-cream/40 mt-4">Dernière mise à jour · {updated}</p>
+
+      <div class="mt-16 grid grid-cols-12 gap-10 max-w-[1100px]">
+        <div class="col-span-12 md:col-span-9">
+          <section class="border-t border-rule pt-8 pb-2">
+            <h2 class="display text-2xl md:text-3xl mb-4">Responsable du traitement</h2>
+            <p class="text-cream/75 leading-relaxed">
+              <strong class="text-cream">{SITE.legalName}</strong> — Lionel Blanchet, basé à {SITE.business.addressLocality}.
+              Contact : <a href={`mailto:${SITE.contact.email}`} class="link-anim">{SITE.contact.email}</a>.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Données <span class="display-italic">collectées</span></h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              Le formulaire de réservation collecte : prénom, nom, email, téléphone, activité professionnelle, semaine
+              souhaitée, message libre. Strictement nécessaire au traitement de la demande.
+            </p>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch] mt-4">
+              Aucun cookie de tracking publicitaire. Statistiques via Cloudflare Web Analytics —
+              <span class="marker">aucun cookie, aucune donnée personnelle</span>.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Finalité</h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              Recontact suite à la demande de réservation et gestion administrative de la prestation. Aucun envoi commercial.
+              Aucune revente, aucun partage à des tiers.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Base légale</h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              Le traitement repose sur ton consentement explicite (case à cocher du formulaire) et, en cas de prestation,
+              sur l'exécution du contrat qui nous lie.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Durée de conservation</h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              3 ans à compter du dernier contact pour les prospects. Durée légale (10 ans à compter de la fin de
+              l'exercice comptable) pour les clients ayant contractualisé.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Sous-traitants</h2>
+            <ul class="space-y-3 text-cream/75 leading-relaxed">
+              <li><strong class="text-cream">Cloudflare</strong> (USA) — hébergement et CDN. Données : adresse IP, requêtes HTTP. Garanties : DPA, clauses contractuelles types.</li>
+              <li><strong class="text-cream">Resend</strong> (USA) — envoi des emails de notification. Données : contenu du formulaire transmis. Garanties : DPA, clauses contractuelles types.</li>
+            </ul>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Tes <span class="display-italic">droits</span></h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              Conformément au RGPD : droit d'accès, rectification, effacement, portabilité, opposition, limitation. Pour
+              les exercer, écris à <a href={`mailto:${SITE.contact.email}`} class="link-anim text-cream">{SITE.contact.email}</a>.
+            </p>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch] mt-4">
+              En cas de manquement, tu peux saisir la CNIL —
+              <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener noreferrer" class="link-anim">cnil.fr/fr/plaintes</a>.
+            </p>
+          </section>
+
+          <section class="border-t border-rule pt-8 pb-2 mt-8">
+            <h2 class="display text-2xl md:text-3xl mb-4">Cookies</h2>
+            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+              Aucun cookie de tracking. Pas de bannière de consentement nécessaire. Seuls des cookies strictement techniques
+              (session serveur lors de l'envoi du formulaire) peuvent être utilisés temporairement.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
