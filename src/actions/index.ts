@@ -25,7 +25,9 @@ const reservationSchema = z.object({
     .optional()
     .transform((v) => v === 'on' || v === 'true' || v === true)
     .refine((v) => v === true, "Coche la case pour accepter d'être recontacté"),
-  company: z.string().optional().default(''),
+  // Honeypot — accepte n'importe quoi (chaîne, undefined, vide). On checke
+  // juste la truthiness côté handler.
+  company: z.unknown().optional(),
 });
 
 export const server = {
@@ -34,7 +36,7 @@ export const server = {
     input: reservationSchema,
     handler: async (data, ctx) => {
       // Honeypot
-      if (data.company && data.company.length > 0) {
+      if (typeof data.company === 'string' && data.company.length > 0) {
         return { ok: true, honeypot: true };
       }
 

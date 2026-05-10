@@ -38,7 +38,8 @@ export default function ReservationForm() {
   const [semaine, setSemaine] = useState<string>('');
   const summaryRef = useRef<HTMLDivElement | null>(null);
 
-  const hasErrors = Object.keys(errors).length > 0 || !!serverError;
+  const visibleErrors = Object.keys(errors).filter((f) => FIELD_LABELS[f]);
+  const hasErrors = visibleErrors.length > 0 || !!serverError;
 
   useEffect(() => {
     if (hasErrors && summaryRef.current) {
@@ -91,11 +92,13 @@ export default function ReservationForm() {
             </p>
             <ul className="space-y-1.5 mono text-[12px] text-ink/85 uppercase tracking-[0.08em]">
               {serverError && <li>· {serverError}</li>}
-              {Object.entries(errors).map(([field, msgs]) => (
-                <li key={field}>
-                  · <strong className="text-ink">{FIELD_LABELS[field] ?? field}</strong> — {msgs?.[0]}
-                </li>
-              ))}
+              {Object.entries(errors)
+                .filter(([field]) => FIELD_LABELS[field])
+                .map(([field, msgs]) => (
+                  <li key={field}>
+                    · <strong className="text-ink">{FIELD_LABELS[field]}</strong> — {msgs?.[0]}
+                  </li>
+                ))}
             </ul>
           </div>
         )}
