@@ -1,16 +1,20 @@
 ---
 const raisons = [
   {
-    label: 'une semaine, un client',
-    body: 'Pendant 5 jours, je ne travaille que sur ton site. Pas de jonglage entre 6 projets, pas de "désolé je te rappelle vendredi".',
+    label: 'méthode rodée',
+    body: "Chaque étape est cadrée à l'avance. Pas de re-découverte du métier sur ton projet, pas de prototype qui dérive. On enchaîne brief → maquette → code → recette, sans temps mort.",
   },
   {
-    label: 'un cadre, pas une cage',
-    body: "La contrainte force la décision. On enlève les 80 % de fonctionnalités qui ne servent à rien et on garde ce qui convertit.",
+    label: 'pas de feature creep',
+    body: "La contrainte des 5 jours élimine les 80 % de fonctions qui ne convertissent pas. Ce qui reste : une page qui dit clairement ce que tu fais, à qui, et pourquoi te choisir.",
   },
   {
-    label: 'pas livré, remboursé',
-    body: "Si vendredi 17 h ton site n'est pas en ligne, accessible, fonctionnel — je te rends ton acompte. Pas de petite ligne, pas d'astérisque.",
+    label: 'stack pensée pour la vitesse',
+    body: "Astro, Tailwind, Cloudflare. HTML/CSS moderne, pas de WordPress qui rame, pas de plugin qui casse. Tu démarres avec un site qui s'ouvre en moins d'1 seconde.",
+  },
+  {
+    label: 'pas livré → remboursé',
+    body: "Vendredi 17h, soit ton site est en ligne sur ton URL réelle, soit ton acompte est sur ton compte sous 7 jours. C'est dans le bon de commande, signé numériquement le lundi matin.",
   },
 ];
 ---
@@ -22,14 +26,17 @@ const raisons = [
   <div class="max-w-[1320px] mx-auto px-6 md:px-24">
     <div class="grid grid-cols-12 gap-6 items-start">
       <div class="col-span-12 md:col-span-5 md:sticky md:top-12">
-        <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-4">№ 05</div>
+        <div class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-4">№ 05</div>
         <h2 id="pourquoi-title" class="display text-[10vw] md:text-7xl leading-[0.92]">
           Pourquoi<br />
           <span class="display-italic">5 jours</span>,<br />
           pas 3 mois&nbsp;?
         </h2>
-        <p class="hand text-3xl text-cream/80 mt-8 rotate-[-2deg]">
+        <p class="hand text-3xl text-ink/80 mt-8 rotate-[-2deg]">
           Parce qu'au-delà,<br />personne ne tient son focus.
+        </p>
+        <p class="mono text-[11px] uppercase tracking-[0.18em] text-ink/55 mt-8 leading-relaxed max-w-[28ch]">
+          ↳ Réserver = bloquer la semaine. Pas un "appel découverte" qui s'éternise.
         </p>
       </div>
 

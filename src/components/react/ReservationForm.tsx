@@ -66,7 +66,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor={prenomId}
-            className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+            className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
           >
             Prénom
           </label>
@@ -85,7 +85,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor={nomId}
-            className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+            className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
           >
             Nom
           </label>
@@ -107,7 +107,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor={emailId}
-            className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+            className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
           >
             Email
           </label>
@@ -127,7 +127,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor={telId}
-            className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+            className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
           >
             Téléphone
           </label>
@@ -149,7 +149,7 @@ export default function ReservationForm() {
       <div>
         <label
           htmlFor={activId}
-          className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+          className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
         >
           Activité / métier
         </label>
@@ -166,7 +166,7 @@ export default function ReservationForm() {
       </div>
 
       <fieldset>
-        <legend className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1">
+        <legend className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1">
           Semaine souhaitée
         </legend>
         <div className="flex flex-wrap gap-2 mt-2" role="radiogroup" aria-label="Semaine souhaitée">
@@ -182,8 +182,8 @@ export default function ReservationForm() {
                 className={
                   'mono text-[12px] uppercase tracking-[0.16em] border px-4 py-2 transition-colors ' +
                   (selected
-                    ? 'border-punch bg-punch text-ink'
-                    : 'border-cream/30 hover:bg-cream hover:text-ink')
+                    ? 'border-punch bg-punch text-cream'
+                    : 'border-ink/30 hover:bg-ink hover:text-cream')
                 }
               >
                 {s.label}
@@ -197,7 +197,7 @@ export default function ReservationForm() {
       <div>
         <label
           htmlFor={messageId}
-          className="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 block mb-1"
+          className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 block mb-1"
         >
           3 lignes sur ton projet (libre)
         </label>
@@ -227,7 +227,7 @@ export default function ReservationForm() {
           className="accent-punch"
           aria-invalid={!!errors.consentement}
         />
-        <label htmlFor={consentId} className="text-sm text-cream/65 leading-relaxed">
+        <label htmlFor={consentId} className="text-sm text-ink/65 leading-relaxed">
           J'accepte d'être recontacté au sujet de ma demande. Aucun envoi commercial.
         </label>
       </div>
@@ -236,7 +236,7 @@ export default function ReservationForm() {
       {serverError && (
         <p
           role="alert"
-          className="border-l-2 border-punch pl-4 py-3 text-cream bg-punch/10"
+          className="border-l-2 border-punch pl-4 py-3 text-ink bg-punch/10"
         >
           {serverError}
         </p>
@@ -257,7 +257,7 @@ export default function ReservationForm() {
             <span className="stamp text-xs">5 jours · garanti</span>
           </span>
         </button>
-        <p className="mono text-[11px] uppercase tracking-[0.18em] text-cream/45 max-w-[36ch] leading-relaxed">
+        <p className="mono text-[11px] uppercase tracking-[0.18em] text-ink/45 max-w-[36ch] leading-relaxed">
           Aucun engagement à ce stade. Tu reçois un mail dans les 4 h, on cale une visio, et seulement après tu décides.
         </p>
       </div>

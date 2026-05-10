@@ -16,22 +16,22 @@ const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
   <main id="contenu" class="relative school-margin overflow-hidden py-24 md:py-36">
     <div class="max-w-[1320px] mx-auto px-6 md:px-24">
       <div class="flex items-center gap-3 mb-6">
-        <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">№ légal</span>
-        <span class="h-px w-16 bg-cream/20"></span>
-        <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">mentions</span>
+        <span class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55">№ légal</span>
+        <span class="h-px w-16 bg-ink/20"></span>
+        <span class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55">mentions</span>
       </div>
 
       <h1 class="display text-[10vw] md:text-7xl leading-[0.95]">
         Mentions <span class="display-italic">légales</span>.
       </h1>
-      <p class="mono text-[11px] uppercase tracking-[0.22em] text-cream/40 mt-4">Dernière mise à jour · {updated}</p>
+      <p class="mono text-[11px] uppercase tracking-[0.22em] text-ink/40 mt-4">Dernière mise à jour · {updated}</p>
 
       <div class="mt-16 grid grid-cols-12 gap-10 max-w-[1100px]">
         <div class="col-span-12 md:col-span-9">
           <section class="border-t border-rule pt-8 pb-2">
             <h2 class="display text-2xl md:text-3xl mb-4">Éditeur du site</h2>
-            <p class="text-cream/75 leading-relaxed">
-              <strong class="text-cream">{SITE.legalName}</strong><br />
+            <p class="text-ink/75 leading-relaxed">
+              <strong class="text-ink">{SITE.legalName}</strong><br />
               Lionel Blanchet, entrepreneur individuel<br />
               {SITE.business.addressLocality} ({SITE.business.postalCode}), France<br />
               Email : <a href={`mailto:${SITE.contact.email}`} class="link-anim">{SITE.contact.email}</a><br />
@@ -43,13 +43,13 @@ const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
 
           <section class="border-t border-rule pt-8 pb-2 mt-8">
             <h2 class="display text-2xl md:text-3xl mb-4">Directeur de la publication</h2>
-            <p class="text-cream/75 leading-relaxed">Lionel Blanchet, dirigeant.</p>
+            <p class="text-ink/75 leading-relaxed">Lionel Blanchet, dirigeant.</p>
           </section>
 
           <section class="border-t border-rule pt-8 pb-2 mt-8">
             <h2 class="display text-2xl md:text-3xl mb-4">Hébergement</h2>
-            <p class="text-cream/75 leading-relaxed">
-              <strong class="text-cream">Cloudflare, Inc.</strong><br />
+            <p class="text-ink/75 leading-relaxed">
+              <strong class="text-ink">Cloudflare, Inc.</strong><br />
               101 Townsend Street, San Francisco, CA 94107, États-Unis<br />
               <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer" class="link-anim">cloudflare.com</a>
             </p>
@@ -57,7 +57,7 @@ const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
 
           <section class="border-t border-rule pt-8 pb-2 mt-8">
             <h2 class="display text-2xl md:text-3xl mb-4">Propriété <span class="display-italic">intellectuelle</span></h2>
-            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+            <p class="text-ink/75 leading-relaxed max-w-[70ch]">
               L'ensemble des éléments présents sur ce site (textes, images, logos, design, code source) sont la propriété
               exclusive de {SITE.legalName}, sauf mention contraire. Toute reproduction, représentation, modification ou
               exploitation, totale ou partielle, sans autorisation écrite préalable est interdite et constitue une
@@ -67,7 +67,7 @@ const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
 
           <section class="border-t border-rule pt-8 pb-2 mt-8">
             <h2 class="display text-2xl md:text-3xl mb-4">Liens externes</h2>
-            <p class="text-cream/75 leading-relaxed max-w-[70ch]">
+            <p class="text-ink/75 leading-relaxed max-w-[70ch]">
               Ce site peut contenir des liens vers des sites tiers. {SITE.legalName} ne peut être tenu responsable du
               contenu de ces sites externes.
             </p>
@@ -75,9 +75,9 @@ const updated = new Date().toLocaleDateString('fr-FR', { dateStyle: 'long' });
 
           <section class="border-t border-rule pt-8 pb-2 mt-8">
             <h2 class="display text-2xl md:text-3xl mb-4">Contact</h2>
-            <p class="text-cream/75 leading-relaxed">
+            <p class="text-ink/75 leading-relaxed">
               Pour toute question relative à ces mentions légales, écris à
-              <a href={`mailto:${SITE.contact.email}`} class="link-anim text-cream">{SITE.contact.email}</a>.
+              <a href={`mailto:${SITE.contact.email}`} class="link-anim text-ink">{SITE.contact.email}</a>.
             </p>
           </section>
         </div>

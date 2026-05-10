@@ -1,5 +1,6 @@
 ---
-import { disposParMois } from '../../data/creneaux';
+import { CRENEAUX_OUVERTS, disposParMois } from '../../data/creneaux';
+const prochaineSemaine = CRENEAUX_OUVERTS[0];
 const dispoText = disposParMois();
 ---
 
@@ -16,31 +17,30 @@ const dispoText = disposParMois();
     5
   </div>
 
-  <!-- Stamp date top-right -->
-  <div
-    class="absolute right-6 md:right-12 top-8 md:top-12 mono text-[11px] uppercase tracking-[0.18em] text-cream/50 text-right hidden sm:block"
-  >
-    <div>SEMAINE EN COURS</div>
-    <div class="text-cream/30">Lundi → Vendredi</div>
-  </div>
+  <!-- Urgency badge en haut à droite -->
+  {prochaineSemaine && (
+    <div class="absolute right-6 md:right-12 top-8 md:top-12 hidden sm:block">
+      <span class="urgency-pill">Sprint dispo · {prochaineSemaine.label}</span>
+    </div>
+  )}
 
   <div class="max-w-[1320px] mx-auto px-6 md:px-24 pt-12 md:pt-24 relative">
     <!-- Eyebrow -->
     <div class="flex items-center gap-3 reveal">
-      <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">№ 01 — l'offre</span>
-      <span class="h-px w-16 bg-cream/20"></span>
-      <span class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55">site web pro</span>
+      <span class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55">№ 01 — l'offre</span>
+      <span class="h-px w-16 bg-ink/20"></span>
+      <span class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55">site web pro · 5 jours</span>
     </div>
 
     <h1 id="hero-title" class="mt-6 md:mt-10 reveal">
       <span class="block display text-[14vw] md:text-[10.5rem] leading-[0.85] font-medium">
         Commandez<br />
-        <span class="display-italic text-cream/85">lundi.</span>
+        <span class="display-italic text-ink/85">lundi.</span>
       </span>
       <span class="block display text-[14vw] md:text-[10.5rem] leading-[0.85] font-medium mt-2 md:mt-4 md:pl-[34%]">
         Livré
         <span class="display-italic underline-felt relative">
-          <span class="hand text-punch absolute -mt-12 ml-2 hidden md:inline">cerclé !</span>
+          <span class="hand text-punch absolute -mt-12 ml-2 hidden md:inline">17h pile.</span>
           vendredi.
         </span>
       </span>
@@ -50,8 +50,8 @@ const dispoText = disposParMois();
     <div class="mt-14 md:mt-24 grid grid-cols-12 gap-6 md:gap-10 items-end">
       <!-- Prix punch -->
       <div class="col-span-12 md:col-span-7 relative">
-        <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/50 mb-3">
-          Prix tout compris · TVA non applicable art. 293B
+        <div class="mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-3">
+          Prix tout compris · paiement unique · TVA non applicable art. 293B
         </div>
         <div class="flex items-end gap-4">
           <div
@@ -61,14 +61,14 @@ const dispoText = disposParMois();
             550<span class="display-italic" style="font-size: 0.45em; vertical-align: 0.55em; margin-left: -0.05em;">€</span>
           </div>
         </div>
-        <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mt-2 -ml-1">
-          ↳ payable en 2× sans frais · 50 % à la réservation
+        <div class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mt-2 -ml-1">
+          ↳ 275&thinsp;€ à la réservation · 275&thinsp;€ à la livraison
         </div>
 
         <!-- Hand annotation -->
-        <div class="hand text-cream/85 text-2xl md:text-3xl absolute -right-2 md:right-8 top-12 md:top-20 rotate-[6deg] hidden sm:block">
-          tout compris,<br />vraiment.
-          <svg class="absolute -left-14 top-3 w-12 h-8" viewBox="0 0 60 30" fill="none" stroke="#F5F1EA" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <div class="hand text-ink/85 text-2xl md:text-3xl absolute -right-2 md:right-8 top-12 md:top-20 rotate-[6deg] hidden sm:block">
+          ni abonnement,<br />ni surprise.
+          <svg class="absolute -left-14 top-3 w-12 h-8" viewBox="0 0 60 30" fill="none" stroke="#1A1714" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
             <path d="M2 22 C 12 8, 30 4, 56 8" />
             <path d="M48 2 L 56 8 L 48 14" />
           </svg>
@@ -78,20 +78,19 @@ const dispoText = disposParMois();
       <!-- Colonne droite : descriptif + CTA + tampon -->
       <div class="col-span-12 md:col-span-5 relative">
         <p
-          class="display text-[1.6rem] md:text-2xl leading-[1.18] text-cream/95 max-w-[26ch]"
+          class="display text-[1.6rem] md:text-2xl leading-[1.18] text-ink/95 max-w-[26ch]"
           style="font-variation-settings: 'opsz' 60, 'wght' 360;"
         >
-          Un site web pro pour artisans, indépendants et TPE françaises.
-          Pensé, designé, codé et mis en ligne en
-          <span class="marker">5 jours ouvrés</span>.
+          Un site web pro qui te ressemble, codé sur-mesure et mis en ligne en
+          <span class="marker">5 jours ouvrés</span>. Pas dans 3 mois. Pas dans 3 semaines.
         </p>
-        <p class="mono text-[11px] uppercase tracking-[0.18em] text-cream/55 mt-4 max-w-[40ch] leading-relaxed">
-          Freelance basé à <span class="text-cream">Rochefort (Charente-Maritime)</span>. Livraison France entière, en visio.
+        <p class="mono text-[11px] uppercase tracking-[0.18em] text-ink/55 mt-4 max-w-[40ch] leading-relaxed">
+          Freelance basé à <span class="text-ink">Rochefort (Charente-Maritime)</span>. Livraison France entière, en visio.
         </p>
 
         <div class="mt-8 flex items-start gap-6">
           <a href="#reserver" class="cta inline-flex items-center gap-3 px-6 py-4 text-lg">
-            Réserver mon créneau
+            Bloquer mon créneau
             <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M1 7 H 19" />
               <path d="M14 1 L 21 7 L 14 13" />
@@ -102,9 +101,9 @@ const dispoText = disposParMois();
           </a>
         </div>
 
-        <div class="mt-6 mono text-[11px] uppercase tracking-[0.16em] text-cream/50 leading-relaxed">
+        <div class="mt-6 mono text-[11px] uppercase tracking-[0.16em] text-ink/55 leading-relaxed">
           <div>↳ {dispoText}.</div>
-          <div>↳ Pas livré vendredi ? <span class="text-cream">remboursé.</span></div>
+          <div>↳ Pas livré vendredi 17h ? <span class="text-ink">Remboursé.</span></div>
         </div>
 
         <!-- Tampon 5 jours -->
@@ -116,23 +115,23 @@ const dispoText = disposParMois();
       </div>
     </div>
 
-    <!-- Trust signal ligne -->
+    <!-- Trust signal — honnête + désir -->
     <div class="mt-20 md:mt-32 border-t border-rule pt-6 grid grid-cols-2 md:grid-cols-4 gap-6">
       <div>
-        <div class="display text-3xl">42</div>
-        <div class="mono text-[11px] uppercase tracking-[0.16em] text-cream/55 mt-1">sites livrés à l'heure</div>
+        <div class="display text-3xl">5j</div>
+        <div class="mono text-[11px] uppercase tracking-[0.16em] text-ink/55 mt-1">du brief à la mise en ligne</div>
+      </div>
+      <div>
+        <div class="display text-3xl">17h</div>
+        <div class="mono text-[11px] uppercase tracking-[0.16em] text-ink/55 mt-1">vendredi · site en ligne</div>
       </div>
       <div>
         <div class="display text-3xl">100%</div>
-        <div class="mono text-[11px] uppercase tracking-[0.16em] text-cream/55 mt-1">livrés vendredi 17h</div>
+        <div class="mono text-[11px] uppercase tracking-[0.16em] text-ink/55 mt-1">code source remis</div>
       </div>
       <div>
-        <div class="display text-3xl">0</div>
-        <div class="mono text-[11px] uppercase tracking-[0.16em] text-cream/55 mt-1">remboursement à ce jour</div>
-      </div>
-      <div>
-        <div class="display text-3xl">4,9<span class="text-base align-super">/5</span></div>
-        <div class="mono text-[11px] uppercase tracking-[0.16em] text-cream/55 mt-1">avis clients vérifiés</div>
+        <div class="display text-3xl">0€</div>
+        <div class="mono text-[11px] uppercase tracking-[0.16em] text-ink/55 mt-1">abonnement caché</div>
       </div>
     </div>
   </div>

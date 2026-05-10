@@ -20,20 +20,28 @@
 @import "@fontsource/caveat/600.css";
 
 @theme {
-  /* Couleurs — palette éditoriale cahier */
-  --color-ink: #0F0E0C;
-  --color-ink2: #181613;
-  --color-cream: #F5F1EA;
-  --color-cream2: #E8E2D3;
-  --color-punch: #D4541C;
+  /* Palette — light dominant, cahier d'écolier sur papier crème */
+  --color-paper: #F7F3EA;          /* page bg principal — crème papier */
+  --color-paper-soft: #EFE9DC;     /* alt section bg (un cran plus chaud) */
+  --color-paper-strong: #E6DECC;   /* contrastes subtils */
+  --color-ink: #1A1714;            /* texte principal — noir chaud */
+  --color-ink-soft: #4A453F;       /* texte secondaire */
+  --color-cream: #F7F3EA;          /* alias paper (compat code design) */
+  --color-cream2: #EFE9DC;
+  --color-punch: #D4541C;          /* orange brique — accent unique */
   --color-punch-dark: #A53E10;
-  --color-margin: #C5413B;
+  --color-margin: #C5413B;         /* rouge marge cahier */
   --color-ochre: #8A6F3D;
-  --color-mute: #5C544A;
-  --color-rule: #2A2622;
+  --color-mute: #8A8278;
+  --color-rule: rgba(26, 23, 20, 0.10);
+  --color-rule-strong: rgba(26, 23, 20, 0.22);
+
+  /* Dark accents (timeline section uniquement) */
+  --color-dark: #1A1714;
+  --color-dark-soft: #2A2622;
 
   /* Typographies */
-  --font-display: 'Fraunces Variable', 'Fraunces', Iowan Old Style, Georgia, serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', 'Iowan Old Style', Georgia, serif;
   --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'JetBrains Mono', monospace;
   --font-hand: 'Caveat', cursive;
@@ -48,13 +56,13 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
-    background: var(--color-ink);
+    background: var(--color-paper);
   }
 
   body {
     margin: 0;
-    background: var(--color-ink);
-    color: var(--color-cream);
+    background: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "ss02";
     line-height: 1.5;
@@ -62,7 +70,7 @@
 
   img, svg, video { display: block; max-width: 100%; height: auto; }
 
-  ::selection { background: var(--color-punch); color: var(--color-ink); }
+  ::selection { background: var(--color-punch); color: var(--color-paper); }
 
   :focus-visible {
     outline: 2px solid var(--color-punch);
@@ -70,13 +78,12 @@
     border-radius: 1px;
   }
 
-  /* Skip-link */
   .skip-link {
     position: absolute;
     top: -100px;
     left: 1rem;
-    background: var(--color-cream);
-    color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
     padding: 0.75rem 1rem;
     z-index: 100;
     text-decoration: none;
@@ -99,17 +106,17 @@
 }
 
 /* ─────────────────────────────────────────────────────────
-   DESIGN — Cahier d'écolier / éditorial print
+   Cahier d'écolier sur papier crème
    ───────────────────────────────────────────────────────── */
 
-/* Grain overlay (multiply ~6%) */
+/* Grain overlay (soustractif léger sur papier) */
 .grain::before {
   content: "";
   position: fixed; inset: 0;
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  opacity: 0.06;
-  mix-blend-mode: overlay;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
   z-index: 60;
 }
 
@@ -127,14 +134,14 @@
   .school-margin::before { left: 22px; }
 }
 
-/* Lignes de cahier (overlay horizontal) */
+/* Lignes de cahier (overlay horizontal — adapté pour fond crème) */
 .ruled {
   background-image: linear-gradient(
     to bottom,
     transparent 0,
     transparent calc(2.25rem - 1px),
-    rgba(245, 241, 234, 0.07) calc(2.25rem - 1px),
-    rgba(245, 241, 234, 0.07) 2.25rem
+    rgba(26, 23, 20, 0.07) calc(2.25rem - 1px),
+    rgba(26, 23, 20, 0.07) 2.25rem
   );
   background-size: 100% 2.25rem;
 }
@@ -158,12 +165,12 @@
   letter-spacing: -0.05em;
 }
 
-/* Filigrane chiffre — visible mais subtil */
+/* Filigrane — stroke punch faible pour s'intégrer au crème */
 .ghost-num {
   font-family: var(--font-display);
   font-style: italic;
-  color: rgba(245, 241, 234, 0.04);
-  -webkit-text-stroke: 1px rgba(245, 241, 234, 0.14);
+  color: rgba(26, 23, 20, 0.04);
+  -webkit-text-stroke: 1px rgba(212, 84, 28, 0.18);
   line-height: 0.8;
 }
 
@@ -181,13 +188,14 @@
   align-items: center;
   box-shadow: inset 0 0 0 1px var(--color-punch);
   position: relative;
+  background: var(--color-paper);
 }
 .stamp::after {
   content: "";
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' fill='%230F0E0C'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' fill='%23F7F3EA'/></svg>");
   mix-blend-mode: lighten;
-  opacity: 0.35;
+  opacity: 0.45;
   pointer-events: none;
 }
 
@@ -218,19 +226,19 @@
 
 /* Surlignage feutre */
 .marker {
-  background-image: linear-gradient(120deg, rgba(212, 84, 28, 0.85) 0%, rgba(212, 84, 28, 0.85) 100%);
+  background-image: linear-gradient(120deg, rgba(212, 84, 28, 0.30) 0%, rgba(212, 84, 28, 0.30) 100%);
   background-repeat: no-repeat;
-  background-size: 100% 38%;
-  background-position: 0 78%;
+  background-size: 100% 42%;
+  background-position: 0 75%;
   padding: 0 0.12em;
-  color: var(--color-cream);
+  color: var(--color-ink);
 }
 .marker-yellow {
   background-image: linear-gradient(120deg, rgba(244, 208, 63, 0.55) 0%, rgba(244, 208, 63, 0.55) 100%);
   background-repeat: no-repeat;
   background-size: 100% 38%;
   background-position: 0 78%;
-  color: var(--color-cream);
+  color: var(--color-ink);
   padding: 0 0.12em;
 }
 
@@ -249,7 +257,7 @@
   color: #2b2616;
   box-shadow:
     0 1px 0 rgba(0, 0, 0, 0.1),
-    4px 8px 16px rgba(0, 0, 0, 0.4),
+    4px 8px 16px rgba(26, 23, 20, 0.18),
     inset 0 -10px 18px rgba(0, 0, 0, 0.06);
   transform: rotate(2.5deg);
   font-family: var(--font-hand);
@@ -283,10 +291,10 @@
 }
 .link-anim:hover { background-size: 100% 1px; }
 
-/* CTA — bouton signature avec ombre décalée */
+/* CTA signature — ombre décalée sur crème */
 .cta {
   background: var(--color-punch);
-  color: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.005em;
@@ -302,7 +310,7 @@
   transform: translate(6px, 6px);
   z-index: -1;
   transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
-  border: 1px solid var(--color-punch);
+  border: 1px solid var(--color-ink);
 }
 .cta:hover::before { transform: translate(10px, 10px); }
 .cta .stamp-on-hover {
@@ -313,6 +321,34 @@
   pointer-events: none;
 }
 .cta:hover .stamp-on-hover { opacity: 1; transform: rotate(-12deg) scale(1); }
+
+/* Urgency badge (réutilisable) */
+.urgency-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  background: rgba(212, 84, 28, 0.10);
+  border: 1px solid rgba(212, 84, 28, 0.35);
+  color: var(--color-punch-dark);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 500;
+  border-radius: 999px;
+}
+.urgency-pill::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--color-punch);
+  border-radius: 50%;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
 
 /* Reveal au scroll */
 .reveal {
@@ -325,11 +361,11 @@
 /* Compteur jours */
 .day {
   transition: color 0.5s ease, opacity 0.5s ease;
-  color: rgba(245, 241, 234, 0.32);
+  color: rgba(247, 243, 234, 0.32);
 }
-.day.lit { color: var(--color-cream); opacity: 1; }
-.day.final { color: var(--color-cream); }
-.day.final .marker { background-size: 100% 42%; }
+.day.lit { color: var(--color-paper); opacity: 1; }
+.day.final { color: var(--color-paper); }
+.day.final .marker { background-size: 100% 42%; color: var(--color-paper); }
 
 /* Accordéon */
 details > summary { list-style: none; cursor: pointer; }
@@ -342,10 +378,10 @@ details[open] .faq-a { animation: faqOpen 0.35s ease both; }
   to { opacity: 1; transform: none; }
 }
 
-/* Pages cahier (timeline) */
+/* Pages cahier (timeline) — sur fond dark */
 .page-card {
-  background: #F5F1EA;
-  color: #1a1814;
+  background: #F7F3EA;
+  color: #1A1714;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 12px 18px 30px rgba(0, 0, 0, 0.45);
   position: relative;
   overflow: hidden;
@@ -357,7 +393,7 @@ details[open] .faq-a { animation: faqOpen 0.35s ease both; }
 }
 .page-card .holes span {
   width: 10px; height: 10px; border-radius: 50%;
-  background: #0F0E0C; margin-left: 9px;
+  background: #1A1714; margin-left: 9px;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 .page-card.lined::after {
@@ -389,12 +425,12 @@ details[open] .faq-a { animation: faqOpen 0.35s ease both; }
   .pages-row .page-card { transform: none !important; }
 }
 
-/* Champ formulaire */
+/* Champ formulaire — sur fond crème */
 .field {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(245, 241, 234, 0.25);
-  color: var(--color-cream);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.30);
+  color: var(--color-ink);
   padding: 14px 0;
   font-family: var(--font-sans);
   font-size: 18px;
@@ -402,5 +438,5 @@ details[open] .faq-a { animation: faqOpen 0.35s ease both; }
   transition: border-color 0.2s ease;
 }
 .field:focus { outline: none; border-color: var(--color-punch); }
-.field::placeholder { color: rgba(245, 241, 234, 0.35); }
+.field::placeholder { color: rgba(26, 23, 20, 0.35); }
 .field[aria-invalid="true"] { border-color: var(--color-punch); }

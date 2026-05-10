@@ -16,7 +16,7 @@ export function localBusinessSchema() {
     name: SITE.legalName,
     alternateName: SITE.name,
     description:
-      "Création de sites web professionnels livrés en 5 jours pour 550€ TTC. Freelance basé à Rochefort, intervention France entière.",
+      "Création de sites web professionnels livrés en 5 jours ouvrés pour 550€ TTC, paiement unique. Code source remis, 1 mois de retouches inclus. Freelance basé à Rochefort, intervention France entière.",
     url: SITE.url,
     logo: `${SITE.url}/og-image.png`,
     image: `${SITE.url}/og-image.png`,
@@ -86,7 +86,7 @@ export function serviceSchema() {
     name: 'Site web pro livré en 5 jours',
     serviceType: 'Création de site internet',
     description:
-      "Création d'un site web professionnel sur-mesure livré en 5 jours ouvrés. Hébergement et nom de domaine 1 an offerts.",
+      "Création d'un site web professionnel sur-mesure livré en 5 jours ouvrés. Code source remis. 1 mois de retouches gratuites incluses.",
     provider: { '@id': BUSINESS_ID },
     areaServed: { '@type': 'Country', name: 'France' },
     offers: {

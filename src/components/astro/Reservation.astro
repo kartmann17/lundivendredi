@@ -18,29 +18,34 @@ import { CRENEAUX_DISPLAY } from '../../data/creneaux';
 
   <div class="max-w-[1320px] mx-auto px-6 md:px-24 relative">
     <div class="grid grid-cols-12 gap-6 mb-12 md:mb-20 items-end">
-      <div class="col-span-12 md:col-span-3 mono text-[11px] uppercase tracking-[0.22em] text-cream/55">
+      <div class="col-span-12 md:col-span-3 mono text-[11px] uppercase tracking-[0.22em] text-ink/55">
         № 08 — réservation
       </div>
       <h2 id="reserver-title" class="col-span-12 md:col-span-9 display text-[10vw] md:text-[6.5rem] leading-[0.92]">
-        Réserve ta <span class="display-italic">semaine</span>.
+        Bloque ta <span class="display-italic">semaine</span>.
       </h2>
     </div>
+
+    <p class="display text-xl md:text-2xl leading-[1.3] text-ink/85 max-w-[60ch] mb-12 md:mb-16" style="font-variation-settings: 'opsz' 60, 'wght' 360;">
+      Un seul sprint par semaine. <span class="marker">Si la semaine est prise, on parle de la suivante.</span>
+      Tu reçois un mail dans les 4 heures, aucun engagement avant l'acompte.
+    </p>
 
     <div class="grid grid-cols-12 gap-10">
       <!-- Sidebar gauche -->
       <aside class="col-span-12 md:col-span-4 space-y-8">
         <div>
-          <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-3">↳ créneaux ouverts</div>
+          <div class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-3">↳ créneaux ouverts</div>
           <ul class="display text-2xl space-y-2">
             {
               CRENEAUX_DISPLAY.map((c) => {
                 const complet = c.dispo === 0;
                 return (
                   <li
-                    class={`flex items-baseline justify-between gap-4 border-b border-rule pb-2 ${complet ? 'text-cream/45' : ''}`}
+                    class={`flex items-baseline justify-between gap-4 border-b border-rule pb-2 ${complet ? 'text-ink/45' : ''}`}
                   >
                     <span>{c.label}</span>
-                    <span class={`mono text-xs ${complet ? '' : 'text-cream/50'}`}>
+                    <span class={`mono text-xs ${complet ? '' : 'text-ink/50'}`}>
                       {complet ? 'complet' : `${c.dispo} dispo`}
                     </span>
                   </li>
@@ -51,8 +56,8 @@ import { CRENEAUX_DISPLAY } from '../../data/creneaux';
         </div>
 
         <div>
-          <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-3">↳ ce qui se passe après</div>
-          <ol class="text-cream/75 leading-relaxed space-y-3">
+          <div class="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-3">↳ ce qui se passe après</div>
+          <ol class="text-ink/75 leading-relaxed space-y-3">
             <li><span class="text-punch mono">01.</span> J'envoie un mail dans les 4 h ouvrées.</li>
             <li><span class="text-punch mono">02.</span> 30 min de visio offerte pour valider que c'est calé.</li>
             <li><span class="text-punch mono">03.</span> Bon de commande, acompte 275 €, c'est parti.</li>
