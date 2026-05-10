@@ -1,6 +1,6 @@
 ---
 import ReservationForm from '../react/ReservationForm.tsx';
-import { CRENEAUX } from '../../data/creneaux';
+import { CRENEAUX_DISPLAY } from '../../data/creneaux';
 ---
 
 <section
@@ -33,7 +33,7 @@ import { CRENEAUX } from '../../data/creneaux';
           <div class="mono text-[11px] uppercase tracking-[0.22em] text-cream/55 mb-3">↳ créneaux ouverts</div>
           <ul class="display text-2xl space-y-2">
             {
-              CRENEAUX.map((c) => {
+              CRENEAUX_DISPLAY.map((c) => {
                 const complet = c.dispo === 0;
                 return (
                   <li

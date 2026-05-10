@@ -50,13 +50,10 @@ export function localBusinessSchema() {
       name: 'France',
     },
     sameAs: [SITE.social.linkedin, SITE.social.github],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '12',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // NB: AggregateRating volontairement absent — ne pas l'ajouter tant
+    // qu'il n'y a pas de vrais avis vérifiables (Google Business Profile
+    // ou plateforme tierce). Un faux AggregateRating viole les guidelines
+    // Google Review Snippet et risque une manual action.
   };
 }
 

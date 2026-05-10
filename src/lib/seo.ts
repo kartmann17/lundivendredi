@@ -33,9 +33,11 @@ export const SITE = {
 } as const;
 
 export const PAGE_DEFAULTS = {
-  title: 'Site web pro livré en 5 jours · 550€ tout compris | lundivendredi',
+  // 54 chars — sous la limite de troncature Google mobile (~60 chars)
+  title: 'Site web pro 5 jours · 550€ — Rochefort | lundivendredi',
+  // 152 chars — dans la fenêtre Google (155-160), avec "Rochefort" et "Charente-Maritime"
   description:
-    'Site web pro livré en 5 jours pour 550€ TTC, paiement unique. Hébergement et domaine 1 an offerts. Freelance basé à Rochefort, livraison France entière.',
+    'Site web pro livré en 5 jours pour 550€ TTC. Hébergement et domaine 1 an offerts. Freelance Rochefort (Charente-Maritime), livraison France entière.',
   keywords: [
     'site web 5 jours',
     'création site internet rapide',
@@ -43,6 +45,8 @@ export const PAGE_DEFAULTS = {
     'site web 550 euros',
     'site web pas cher',
     'développeur web freelance livraison rapide',
+    'site web Charente-Maritime',
+    'freelance Rochefort',
   ],
 } as const;
 
