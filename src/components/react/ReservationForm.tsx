@@ -1,7 +1,18 @@
-import { useState, useId, type FormEvent } from 'react';
+import { useEffect, useRef, useState, useId, type FormEvent } from 'react';
 import { actions, isInputError } from 'astro:actions';
 import { navigate } from 'astro:transitions/client';
 import { CRENEAUX_OUVERTS } from '../../data/creneaux';
+
+const FIELD_LABELS: Record<string, string> = {
+  prenom: 'Prénom',
+  nom: 'Nom',
+  email: 'Email',
+  telephone: 'Téléphone',
+  activite: 'Activité',
+  semaine: 'Semaine souhaitée',
+  message: 'Message',
+  consentement: 'Consentement RGPD',
+};
 
 const SEMAINES = [
   ...CRENEAUX_OUVERTS.map((c) => ({ value: c.value, label: c.label, dispo: c.dispo })),
@@ -25,6 +36,15 @@ export default function ReservationForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [serverError, setServerError] = useState<string | null>(null);
   const [semaine, setSemaine] = useState<string>('');
+  const summaryRef = useRef<HTMLDivElement | null>(null);
+
+  const hasErrors = Object.keys(errors).length > 0 || !!serverError;
+
+  useEffect(() => {
+    if (hasErrors && summaryRef.current) {
+      summaryRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [hasErrors]);
 
   const prenomId = useId();
   const nomId = useId();
@@ -62,6 +82,25 @@ export default function ReservationForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-8 mt-4">
+      {/* Error summary — visible quand validation foire */}
+      <div ref={summaryRef} aria-live="polite">
+        {hasErrors && (
+          <div role="alert" className="border-2 border-punch bg-punch/10 p-5 rounded-sm">
+            <p className="display text-lg leading-snug mb-3">
+              <span className="text-punch font-medium">↳</span> Quelques champs à corriger&nbsp;:
+            </p>
+            <ul className="space-y-1.5 mono text-[12px] text-ink/85 uppercase tracking-[0.08em]">
+              {serverError && <li>· {serverError}</li>}
+              {Object.entries(errors).map(([field, msgs]) => (
+                <li key={field}>
+                  · <strong className="text-ink">{FIELD_LABELS[field] ?? field}</strong> — {msgs?.[0]}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="grid grid-cols-2 gap-6">
         <div>
           <label
@@ -232,15 +271,6 @@ export default function ReservationForm() {
         </label>
       </div>
       {errors.consentement && <p className="-mt-4 text-punch text-sm">{errors.consentement[0]}</p>}
-
-      {serverError && (
-        <p
-          role="alert"
-          className="border-l-2 border-punch pl-4 py-3 text-ink bg-punch/10"
-        >
-          {serverError}
-        </p>
-      )}
 
       <div className="flex flex-col md:flex-row md:items-center gap-6 pt-6">
         <button

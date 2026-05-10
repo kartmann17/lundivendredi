@@ -22,8 +22,9 @@ const reservationSchema = z.object({
   message: z.string().trim().max(2000, 'Message trop long').optional().default(''),
   consentement: z
     .union([z.literal('on'), z.literal('true'), z.boolean()])
+    .optional()
     .transform((v) => v === 'on' || v === 'true' || v === true)
-    .refine((v) => v === true, 'Le consentement RGPD est requis'),
+    .refine((v) => v === true, "Coche la case pour accepter d'être recontacté"),
   company: z.string().optional().default(''),
 });
 
