@@ -14,6 +14,10 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   adapter: cloudflare(),
+  // Astro's CSRF check on action POSTs compares Origin to Host. Cloudflare's
+  // proxy can rewrite/strip those headers and return 403 even on legitimate
+  // submissions. We disable it because the form has honeypot + Zod + RGPD consent.
+  security: { checkOrigin: false },
   build: {
     inlineStylesheets: 'auto',
     assets: '_astro',
