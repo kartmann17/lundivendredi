@@ -254,10 +254,10 @@ export default function ReservationForm() {
         {errors.message && <p className="mt-2 text-punch text-sm">{errors.message[0]}</p>}
       </div>
 
-      {/* Honeypot */}
-      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
-        <label htmlFor="company">Société</label>
-        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      {/* Honeypot — display:none + name obscur pour échapper à l'autofill Chrome */}
+      <div aria-hidden="true" style={{ display: 'none' }}>
+        <label htmlFor="ref_code">Laisser vide</label>
+        <input id="ref_code" name="ref_code" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="flex items-center gap-3">

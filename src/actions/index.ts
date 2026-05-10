@@ -25,9 +25,10 @@ const reservationSchema = z.object({
     .optional()
     .transform((v) => v === 'on' || v === 'true' || v === true)
     .refine((v) => v === true, "Coche la case pour accepter d'être recontacté"),
-  // Honeypot — accepte n'importe quoi (chaîne, undefined, vide). On checke
-  // juste la truthiness côté handler.
-  company: z.unknown().optional(),
+  // Honeypot — accepte n'importe quoi. On checke juste la truthiness handler.
+  // Champ renommé 'ref_code' pour ne plus être chopé par l'autofill Chrome qui
+  // remplit aggressively les inputs name="company".
+  ref_code: z.unknown().optional(),
 });
 
 export const server = {
@@ -36,7 +37,8 @@ export const server = {
     input: reservationSchema,
     handler: async (data, ctx) => {
       // Honeypot
-      if (typeof data.company === 'string' && data.company.length > 0) {
+      if (typeof data.ref_code === 'string' && data.ref_code.length > 0) {
+        console.log('[reservation] honeypot triggered, silently dropping');
         return { ok: true, honeypot: true };
       }
 
@@ -98,20 +100,37 @@ export const server = {
         </div>
       `;
 
+      // NB : on utilise 'onboarding@resend.dev' (domaine Resend par défaut)
+      // car le domaine lundivendredi.fr n'est pas encore vérifié DKIM/SPF
+      // dans Resend. Le replyTo pointe vers l'email du prospect, donc tes
+      // réponses partiront de toi normalement.
+      // Pour changer ça plus tard : vérifier lundivendredi.fr dans Resend
+      // (https://resend.com/domains) puis remettre from: 'reservation@lundivendredi.fr'.
+      console.log('[reservation] attempting send', {
+        to: contactEmail,
+        subject,
+        hasApiKey: !!apiKey,
+        apiKeyPrefix: apiKey?.slice(0, 6),
+      });
+
       try {
-        const { error } = await resend.emails.send({
-          from: 'lundivendredi <reservation@lundivendredi.fr>',
+        const result = await resend.emails.send({
+          from: 'lundivendredi <onboarding@resend.dev>',
           to: contactEmail,
           replyTo: data.email,
           subject,
           text,
           html,
         });
-        if (error) {
-          console.error('[reservation] Resend error', error);
+        console.log('[reservation] resend response', {
+          id: result.data?.id,
+          error: result.error,
+        });
+        if (result.error) {
+          console.error('[reservation] Resend error', result.error);
           throw new ActionError({
             code: 'INTERNAL_SERVER_ERROR',
-            message: "Erreur d'envoi. Réessaie ou écris-moi directement.",
+            message: `Erreur Resend : ${result.error.message ?? 'inconnue'}`,
           });
         }
       } catch (err) {
@@ -119,7 +138,7 @@ export const server = {
         console.error('[reservation] unexpected error', err);
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: "Erreur d'envoi. Réessaie ou écris-moi directement.",
+          message: `Erreur d'envoi : ${err instanceof Error ? err.message : 'inconnue'}`,
         });
       }
 
