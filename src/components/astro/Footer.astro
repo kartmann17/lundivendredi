@@ -49,11 +49,12 @@ const placesText = TOTAL_DISPO === 0
       </div>
       <div class="col-span-12 md:col-span-4">
         <div class="mono text-[10px] uppercase tracking-[0.22em] text-ink/40 mb-3">Contact direct</div>
-        <a class="display text-3xl link-anim" href={`mailto:${SITE.contact.emailDisplay}`}>
+        <a class="display text-xl md:text-3xl link-anim break-all" href={`mailto:${SITE.contact.emailDisplay}`}>
           {SITE.contact.emailDisplay}
         </a>
-        <div class="mono text-[12px] mt-2 text-ink/55">
-          <a href={`tel:${SITE.contact.phone}`} class="link-anim">{SITE.contact.phoneDisplay}</a> · lun → ven · 9h-18h
+        <div class="mono text-[12px] mt-2 text-ink/55 flex flex-wrap gap-x-1">
+          <a href={`tel:${SITE.contact.phone}`} class="link-anim">{SITE.contact.phoneDisplay}</a>
+          <span>· lun → ven · 9h-18h</span>
         </div>
       </div>
     </div>

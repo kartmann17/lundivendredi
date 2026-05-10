@@ -101,7 +101,7 @@ export default function ReservationForm() {
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor={prenomId}
@@ -142,7 +142,7 @@ export default function ReservationForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor={emailId}
