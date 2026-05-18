@@ -6,7 +6,7 @@ export const SITE = {
   defaultLocale: 'fr-FR',
   defaultLanguage: 'fr',
   ogImage: '/og-image.png',
-  themeColor: '#0F0E0C',
+  themeColor: '#F7F3EA',
   twitter: '@kreyatik',
   contact: {
     email: 'kreyatik@gmail.com',

@@ -1,0 +1,32 @@
+name: Rebuild hebdomadaire
+
+# Le site est statique : les créneaux sont calculés au moment du build.
+# Sans rebuild, les semaines passées resteraient affichées. Ce workflow
+# redéploie le site tous les lundis matin pour rafraîchir les dispos.
+#
+# ⚙️  SETUP UNIQUE (à faire une fois) :
+#   1. Cloudflare Pages → projet lundivendredi → Settings → Builds & deployments
+#      → "Deploy hooks" → Add deploy hook → nom "rebuild-hebdo", branche "main"
+#      → copier l'URL générée
+#   2. GitHub → repo lundivendredi → Settings → Secrets and variables → Actions
+#      → New repository secret → nom "CF_DEPLOY_HOOK", valeur = l'URL copiée
+
+on:
+  schedule:
+    # Tous les lundis à 05:00 UTC (07:00 heure de Paris l'été, 06:00 l'hiver)
+    - cron: '0 5 * * 1'
+  # Permet aussi de lancer le rebuild à la main depuis l'onglet Actions
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher le redéploiement Cloudflare Pages
+        run: |
+          if [ -z "${{ secrets.CF_DEPLOY_HOOK }}" ]; then
+            echo "::error::Secret CF_DEPLOY_HOOK manquant — voir le setup en haut de ce fichier."
+            exit 1
+          fi
+          curl -fsS -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
+          echo "✓ Redéploiement Cloudflare déclenché."

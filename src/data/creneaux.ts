@@ -6,14 +6,32 @@
  *
  * Les semaines sont générées automatiquement entre START_DATE et END_DATE.
  * Pour fermer une semaine spécifique (complet), ajoute-la dans OVERRIDES.
+ *
+ * ⏳ Auto-péremption : START_DATE = le prochain lundi à venir, recalculé à
+ * CHAQUE build. Les semaines passées disparaissent donc toutes seules.
+ * Comme le site est statique, un rebuild hebdo (GitHub Actions, tous les
+ * lundis) garantit que l'affichage reste à jour même sans push manuel.
  */
 
 // ─────────────────────────────────────────────────────────────────
 // 🔧 CONFIG — c'est ICI qu'on touche pour faire évoluer les dispos
 // ─────────────────────────────────────────────────────────────────
 
-/** Premier lundi proposé (au format YYYY-MM-DD) */
-const START_DATE = '2026-05-11';
+/**
+ * Le prochain lundi à venir, au format YYYY-MM-DD (aujourd'hui inclus si on
+ * est déjà lundi). Calculé en UTC pour éviter tout décalage de fuseau.
+ */
+function upcomingMonday(from: Date = new Date()): string {
+  const d = new Date(
+    Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate()),
+  );
+  const dow = d.getUTCDay(); // 0 = dim, 1 = lun, … 6 = sam
+  d.setUTCDate(d.getUTCDate() + ((8 - dow) % 7)); // lun→+0, mar→+6, …, dim→+1
+  return d.toISOString().slice(0, 10);
+}
+
+/** Premier lundi proposé — dynamique : se décale tout seul dans le temps */
+const START_DATE = upcomingMonday();
 
 /** Dernier lundi proposé (jusqu'à fin 2027) */
 const END_DATE = '2027-12-27';

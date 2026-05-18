@@ -12,13 +12,24 @@ import Reservation from '../components/astro/Reservation.astro';
 import Footer from '../components/astro/Footer.astro';
 import JsonLd from '../components/astro/seo/JsonLd.astro';
 import SchemaFAQ from '../components/astro/seo/SchemaFAQ.astro';
-import { serviceSchema, breadcrumbSchema } from '../lib/schema';
+import {
+  serviceSchema,
+  breadcrumbSchema,
+  localBusinessSchema,
+  websiteSchema,
+  personSchema,
+} from '../lib/schema';
 import { FAQ as FAQ_DATA } from '../data/faq';
 import { SITE } from '../lib/seo';
 ---
 
 <BaseLayout>
   <Fragment slot="head">
+    {/* LocalBusiness — émis en premier : c'est le nœud #business que
+        serviceSchema/personSchema référencent via @id (sinon référence cassée). */}
+    <JsonLd data={localBusinessSchema()} />
+    <JsonLd data={websiteSchema()} />
+    <JsonLd data={personSchema()} />
     <JsonLd data={serviceSchema()} />
     <SchemaFAQ items={FAQ_DATA} />
     <JsonLd data={breadcrumbSchema([{ name: 'Accueil', url: SITE.url }])} />
